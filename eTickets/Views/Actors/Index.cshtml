@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Actor>
+
+@{
+    ViewData["Title"] = "Show All Actors";
+} 
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(Model=>Model.PictureUrl)</th>
+                    <th>@Html.DisplayNameFor(Model=>Model.ActorName)</th>
+                    <th>@Html.DisplayNameFor(Model=>Model.Bio)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle"><img class="rounded-circle" src="@item.PictureUrl" alt="@item.ActorName" style="max-width:150px" /></td>
+                        <td class="align-middle">@Html.DisplayFor(modelItem => item.ActorName)</td>
+                        <td class="align-middle">@Html.DisplayFor(modelItem => item.Bio)</td>
+
+                        <td class="align-middle">
+                            <a class="btn btn-outline-primary" style="margin-bottom:10px" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Edit</a>
+                            <a class="btn btn-outline-info" style="margin-bottom:10px" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i> Details</a>
+                            <a class="btn btn-danger" style="margin-bottom:10px" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i> Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style="position:fixed; right: 25px; bottom:65px;" class="text-white">
+    <a asp-controller="Actors" asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add New
+    </a>
+</div>

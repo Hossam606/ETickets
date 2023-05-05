@@ -1,0 +1,58 @@
+﻿@model Cinema
+@{
+    ViewData["Title"] = "Delete Actor";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1> Delete for @Model.CinemaName </h1>
+        </p>
+        <div class="row">
+            <div class=" col-md-8 offset-2">
+                <div class="form-group text-center">
+                    <img class="rounded-circle border-info" style="max-width:150px; max-height:250px" id="ProfilPicturePreview" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="CinemaName" class="control-label"></label>
+                    <input asp-for="CinemaName" class="form-control" readonly />
+                    <span asp-validation-for="CinemaName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PictureUrl" class="control-label"></label>
+                    <input asp-for="PictureUrl" class="form-control" readonly />
+                    <span asp-validation-for="PictureUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" readonly />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="padding-top:10px;">
+                    <form asp-action="Delete" style="margin:15px;">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="Confirm" class="btn btn-danger float-right" />
+                    </form>
+                    <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+
+        console.log("dddd");
+
+        $(document).ready(function () {
+            var output = document.getElementById('ProfilPicturePreview');
+            output.src = $("#PictureUrl").val();
+        })
+
+    </script>
+    }
